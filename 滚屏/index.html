@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#page{
+				width: 26px;
+				height: 140px;
+				position: fixed;
+				right: 48px;
+				top: 50%;
+				margin-top: -70px;
+				z-index: 999;
+			}
+			.btn{
+				width: 26px;
+				height: 26px;
+				box-sizing: border-box;
+				padding: 4px;
+				border-radius: 13px;
+				margin-bottom: 12px;
+			}
+			.btn:nth-of-type(4){
+				margin-bottom: 0;
+			}
+			.btn>span{
+				display: block;
+				width: 16px;
+				height: 16px;
+				background: #fff;
+				border-radius: 8px;
+			}
+			#page .active{
+				border: 1px solid #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="page">
+			<div class="btn"><span></span></div>
+			<div class="btn"><span></span></div>
+			<div class="btn"><span></span></div>
+			<div class="btn"><span></span></div>
+		</div>
+		<ul id="ul"></ul>
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let arr = ['skyblue','hotpink','orange','dimgrey'];
+			let h=$(window).innerHeight();
+			arr.forEach((e)=>{
+				let li=$('<li style="background:'+e+';height:'+h+'px;"></li>');
+				$('#ul').append(li);
+			});
+			$('.btn').eq(0).addClass('active').siblings().removeClass('active');
+			$('.btn').click(function (){
+				$(this).addClass('active').siblings().removeClass('active');
+				let _index=$(this).index();
+				console.log(_index);
+				$('body').animate({
+					scrollTop:$('li').eq(_index).offset().top
+				});
+			});
+			$(window).resize(()=>{
+				$('#ul').html('');
+				h = $(window).innerHeight();
+				$('.btn').eq(0).addClass('active').siblings().removeClass('active');
+				arr.forEach((e)=>{
+					let li=$('<li style="background:'+e+';height:'+h+'px;"></li>');
+					$('#ul').append(li);
+				});
+			});
+		</script>
+	</body>
+</html>

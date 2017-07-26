@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const arr = [
+				'第一条内容',
+				'第二条内容',
+				'第三条内容'
+			];
+			$.each(arr,function(i,e){
+				var b = $(`<button>按钮${i+1}</button>`).on('click mouseover',{a:arr[i],id:i},function(ev){
+					console.log(ev.data);
+				});
+				$('body').append(b);
+			});
+		</script>
+	</body>
+</html>

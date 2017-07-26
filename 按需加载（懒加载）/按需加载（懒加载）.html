@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				border: 1px solid #000;
+				width:600px;
+				overflow: hidden;
+				position: absolute;
+				left: 50%;
+				margin-left: -302px;
+			}	
+			li{
+				list-style: none;
+				width:260px;
+				height: 200px;	
+				float: left;
+				margin: 5px;
+				border: 1px solid #ccc;
+			}
+			img{
+				width:260px;
+				height: 200px;
+				border: none;
+				opacity:0;
+				transition: 1s;	
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ul">
+			<!--<li><img src=""/></li>-->
+		</ul>
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*
+			原理
+				如果在img的src中写入图片地址，在打开页面的时候就会加载，
+				所以开始不用设置图片的src。
+				当结构进入可视区范围的时候，就把进入可视区范围的img的src设置为真实的地址即可。
+			*/
+			const arr=[
+				'img/1.jpg',
+				'img/2.jpg',
+				'img/3.jpg',
+				'img/4.jpg',
+				'img/5.jpg',
+				'img/6.jpg',
+				'img/7.jpg',
+				'img/8.jpg',
+				'img/9.jpg',
+				'img/10.jpg',
+				'img/11.jpg',
+				'img/12.jpg',
+				'img/13.jpg',
+				'img/14.jpg',
+				'img/15.jpg',
+				'img/16.jpg',
+				'img/17.jpg',
+				'img/18.jpg'
+			];
+			//生成结构
+			arr.forEach((e)=>{
+				let li=$('<li><img _src="'+e+'"/></li>');
+				$('ul').append(li);
+			});
+			const $lis=$('li');
+			fn();
+			$(window).scroll(fn);
+			function fn(){
+				$lis.each((i,e)=>{
+					if ($(e).offset().top<=$(window).innerHeight()+$(window).scrollTop()) {
+						if ($(e).find('img').attr('_src')) {
+							$(e).find('img').css('opacity',1);
+							$(e).find('img').attr('src',$(e).find('img').attr('_src'));
+							$(e).find('img').removeAttr('_src');
+						}
+					}
+				});
+			};
+		</script>
+	</body>
+</html>

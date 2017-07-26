@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script src="jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*
+				原生转jQ对象  
+					$(原生对象)  -> JQ对象
+		
+				JQ对象转原生
+					$('jQ对象').get(0) -> 原生对象（不推荐）
+					$('jQ对象')[下标] -> 原生对象   （推荐）
+			*/
+			console.log($('div')[2]);
+		</script>
+	</body>
+</html>
