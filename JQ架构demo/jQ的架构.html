@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box"></div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		<script src="sizzle.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			(function (global,factory){
+				factory(global);
+			})(typeof window!=='undefined'?window:this,function (global,noGlobal){
+				let jQuery=function (selector){
+					return new paohui(selector);
+				};
+				jQuery.prototype={
+					constructor:jQuery,
+					css:function (){
+						//传多个参数是设置，传单个是获取或者批量设置
+						var toS = Object.prototype.toString;
+						if (arguments.length==1) {
+							if (toS.call(arguments[0])=='[object Object]') {
+								for (var i=0;i<this.length;i++) {
+									for (var attr in arguments[0]) {
+										this[i].style[attr]=arguments[0][attr];
+									}
+								}
+							} else{
+								return getComputedStyle(this[0])[arguments[0]];
+							}
+						} else{
+							this[0].style[arguments[0]] = arguments[1];
+						}
+						//链式
+						return this;
+					}
+				};
+				function paohui(selector){
+					if (typeof selector==='function') {
+						document.addEventListener('DOMContentLoaded',function (){
+							selector();
+						});
+					} else{
+						
+						var arr=Sizzle(selector);
+						for (var i=0;i<arr.length;i++) {
+							this[i]=arr[i];
+						}
+						this.length=arr.length;
+					}
+				};
+				paohui.prototype=jQuery.prototype;
+				global.$=global.jQuery=jQuery;
+			});
+			$('li').css('background','red');
+			console.log($('li').css('height'));
+			$('li').css({
+				height:'50px',
+				background:'yellow'
+			});
+		</script>
+	</body>
+</html>
