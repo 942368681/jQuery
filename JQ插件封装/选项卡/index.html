@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Document</title>
+   <style media="screen">
+      .active {
+         background: yellow;
+      }
+
+      #app div {
+         border: 1px solid #000;
+         width: 300px;
+         height: 200px;
+      }
+
+      .show {
+         display: block;
+      }
+
+      .hide {
+         display: none;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="app"></div>
+   <script src="jquery-3.2.1.min.js" charset="utf-8"></script>
+   <script src="myTab2.js" charset="utf-8"></script>
+   <script type="text/javascript">
+      var data = {
+         btns: ['新闻', '体育', '游戏', '音乐'],
+         contents: [
+            [{
+                  id: 0,
+                  content: '111'
+               },
+               {
+                  id: 0,
+                  content: '222'
+               },
+               {
+                  id: 0,
+                  content: '333'
+               }
+            ],
+            '夜王拿标杆把龙给弄死了',
+            '炉石小德逆天了',
+            '说唱'
+         ]
+      };
+      $('#app').tabs(data);
+   </script>
+</body>
+
+</html>
